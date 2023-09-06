@@ -4,7 +4,9 @@ import { getDataFromTree } from '@apollo/client/react/ssr';
 import { createUploadLink } from 'apollo-upload-client';
 import withApollo from 'next-with-apollo';
 import { endpoint, prodEndpoint } from '../config';
+import paginationField from './paginationField';
 
+// Boilerplate
 function createClient({ headers, initialState }) {
   return new ApolloClient({
     link: ApolloLink.from([
@@ -21,6 +23,7 @@ function createClient({ headers, initialState }) {
           );
       }),
       // this uses apollo-link-http under the hood, so all the options here come from that package
+      // plus some extended functionality for files uploading
       createUploadLink({
         uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
         fetchOptions: {
@@ -35,7 +38,9 @@ function createClient({ headers, initialState }) {
         Query: {
           fields: {
             // TODO: We will add this together!
-            // allProducts: paginationField(),
+            // We say to Apollo that we will handle how the
+            // query results will be represented in the cash
+            allProducts: paginationField(),
           },
         },
       },

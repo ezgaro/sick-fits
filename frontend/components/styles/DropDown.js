@@ -28,17 +28,20 @@ const glow = keyframes`
   }
 
   to {
-    box-shadow: 0 0 10px 1px yellow;
+    box-shadow: 0 0 10px 1px yellow;  
   }
 `;
 
 const SearchStyles = styled.div`
   position: relative;
+  width: 100vw;
+  /* 100% width */
   input {
     width: 100%;
     padding: 10px;
     border: 0;
     font-size: 2rem;
+    /* If loading, show animation */
     &.loading {
       animation: ${glow} 0.5s ease-in-out infinite alternate;
     }

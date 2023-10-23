@@ -21,6 +21,7 @@ const RESET_MUTATION = gql`
   }
 `;
 
+// eslint-disable-next-line react/prop-types
 export default function Reset({ token }) {
   const { inputs, handleChange, resetForm } = useForm({
     email: '',
@@ -33,12 +34,9 @@ export default function Reset({ token }) {
   const successfulError = data?.redeemUserPasswordResetToken?.code
     ? data?.redeemUserPasswordResetToken
     : undefined;
-  console.log(error);
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(inputs);
     const res = await reset().catch(console.error);
-    console.log(res);
     resetForm();
   }
 

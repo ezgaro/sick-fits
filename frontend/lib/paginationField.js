@@ -18,9 +18,6 @@ export default function paginationField() {
       }
 
       if (items.length) {
-        console.log(
-          `There are ${items.length} items in te cash.Gonna send them to apollo`
-        );
         return items;
       }
       return false;
@@ -39,7 +36,6 @@ export default function paginationField() {
       // ---------------------------------export default function paginationField() {paginationField.js
     },
     merge(existing, incoming, { args }) {
-      console.log(`Merging items from the network ${incoming.length}`);
       const { skip, first } = args;
       const merged = existing ? existing.slice(0) : [];
       merged.push(incoming);

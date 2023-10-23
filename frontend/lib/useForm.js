@@ -7,6 +7,7 @@ export default function useForm(initial = {}) {
   useEffect(() => {
     setInputs(initial);
   }, [initialValues]);
+
   function handleChange(e) {
     let { value, name, type } = e.target;
     if (type === 'number') {

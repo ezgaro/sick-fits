@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { createTransport, getTestMessageUrl } from 'nodemailer';
 
 const transport = createTransport({
@@ -55,7 +56,7 @@ export async function sendPasswordResetEmail(
     <a href="${process.env.FRONTEND_URL}/reset?token=${resetToken}">CLICK HERE TO RESET</a>
 
       `),
-  })) as MailResponse;
+  })) as unknown as MailResponse;
   if (process.env.MAIL_USER.includes('ethereal.email')) {
     console.log(`📧Message Sent! Preview it at ${getTestMessageUrl(info)}`);
   }

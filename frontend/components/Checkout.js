@@ -42,7 +42,7 @@ const CREATE_ORDER_MUTATION = gql`
 `;
 const stripeLib = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
-function ChechoutForm() {
+function CheckoutForm() {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
@@ -102,12 +102,12 @@ function ChechoutForm() {
     </CheckoutFormStyles>
   );
 }
-function Chechout() {
+function Checkout() {
   return (
     <Elements stripe={stripeLib}>
-      <ChechoutForm />
+      <CheckoutForm />
     </Elements>
   );
 }
 
-export default Chechout;
+export default Checkout;

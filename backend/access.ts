@@ -37,6 +37,16 @@ export const rules = {
     // 2. If not, do they own this item?
     return { user: { id: session.itemId } };
   },
+  canReadProducts({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    if (permissions.canManageProducts({ session })) {
+      return true; // They can read everything!
+    }
+    // They should only see available products (based on the status field)
+    return { status: 'AVAILABLE' };
+  },
   canOrder({ session }: ListAccessArgs) {
     if (!isSignedIn({ session })) {
       return false;
@@ -58,16 +68,6 @@ export const rules = {
     }
     // 2. If not, do they own this item?
     return { order: { user: { id: session.itemId } } };
-  },
-  canReadProducts({ session }: ListAccessArgs) {
-    if (!isSignedIn({ session })) {
-      return false;
-    }
-    if (permissions.canManageProducts({ session })) {
-      return true; // They can read everything!
-    }
-    // They should only see available products (based on the status field)
-    return { status: 'AVAILABLE' };
   },
   canManageUsers({ session }: ListAccessArgs) {
     if (!isSignedIn({ session })) {
